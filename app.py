@@ -2,14 +2,17 @@ import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
 
-MARQUEUR = "à compléter par l'utilisateur"
+MARQUEUR = "répondre"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets",
           "https://www.googleapis.com/auth/drive"]
 NOM_FEUILLE = "mon_app_questions"  # le nom exact de ta Google Sheet
 
-# --- Connexion à Google Sheets ---
+# --- Connexion à Google Sheets, avec les secrets.toml ---
 def connecter():
-    creds = Credentials.from_service_account_file("credentials.json", scopes=SCOPES)
+    creds = Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"],
+        scopes=SCOPES
+    )
     client = gspread.authorize(creds)
     return client.open(NOM_FEUILLE).sheet1
 
@@ -53,6 +56,7 @@ else:
         valider = st.form_submit_button("Valider ➡️")
 
     if valider:
+        st.warning("La validation peut prendre quelques secondes")
         if reponse.strip():
             sauvegarder(sheet, idx, reponse.strip())
             st.rerun()
