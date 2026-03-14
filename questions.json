@@ -1,0 +1,22 @@
+[
+  {
+    "input": "Quelle est la capitale de la France ?",
+    "output": "Ta grand-mère"
+  },
+  {
+    "input": "Combien font 2 + 2 ?",
+    "output": "4"
+  },
+  {
+    "input": "Quel est ton prénom ?",
+    "output": "Gontrand"
+  },
+  {
+    "input": "Ca joue ?",
+    "output": "yessay"
+  },
+  {
+    "input": "Quelle date aujourd'hui ?",
+    "output": "une loutre"
+  }
+]
