@@ -27,7 +27,7 @@ def sauvegarder(sheet, idx, reponse):
     sheet.update_cell(idx + 2, 2, reponse)
 
 # --- App ---
-st.title("📝 Compléter le fichier")
+st.title("📝 Répondre svp")
 
 sheet = connecter()
 data = charger_questions(sheet)
@@ -39,7 +39,7 @@ indices_restants = [
 
 if not indices_restants:
     st.success("✅ Toutes les questions ont été répondues !")
-    st.table(data)
+    # st.table(data)
 else:
     total = len(data)
     restant = len(indices_restants)
@@ -47,16 +47,16 @@ else:
     st.caption(f"Question {total - restant + 1} / {total}")
 
     idx = indices_restants[0]
-    question = data[idx]["input"]
+    video_url = data[idx]["input"]
 
-    st.subheader(f"❓ {question}")
+    st.video(video_url)
 
     with st.form(key=f"form_{idx}"):
         reponse = st.text_input("Ta réponse :")
         valider = st.form_submit_button("Valider ➡️")
 
     if valider:
-        st.warning("La validation peut prendre quelques secondes")
+        st.warning("La validation peut prendre quelques temps :)")
         if reponse.strip():
             sauvegarder(sheet, idx, reponse.strip())
             st.rerun()
