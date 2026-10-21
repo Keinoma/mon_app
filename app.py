@@ -38,7 +38,7 @@ indices_restants = [
 ]
 
 if not indices_restants:
-    st.success("✅ Toutes les questions ont été répondues !")
+    st.success("✅ Toutes les questions ont vite été répondues !")
     # st.table(data)
 else:
     total = len(data)
